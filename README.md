@@ -1,5 +1,106 @@
 # Jogo-Girotto-As-Chaves-do-Esquecimetno
 
+🧩 As Chaves do Esquecimento
+
+🎯 Objetivo do jogo
+
+O jogador controla um personagem que precisa passar por três fases diferentes. Em cada fase, o objetivo principal é:
+	•	Explorar o mapa
+	•	Encontrar a chave
+	•	Interagir com a chave para abrir a porta
+	•	Sair pela porta para ir à próxima fase
+
+Mas nem tudo é tão simples: há monstros, armadilhas, botões misteriosos, teleportes e desafios no caminho. O jogador precisa usar estratégia e atenção para não ter que reiniciar a fase várias vezes.
+
+⸻
+
+🎮 Controles do jogador
+
+O jogo é controlado totalmente pelo teclado, com as seguintes teclas:
+	•	W: movimenta o jogador para cima
+	•	A: movimenta para esquerda
+	•	S: movimenta para baixo
+	•	D: movimenta para direita
+
+A interação é usada, por exemplo, para pegar a chave, ativar um botão ou abrir uma porta.
+
+⸻
+
+🔣 Elementos do mapa
+
+Durante o jogo, o jogador vai encontrar vários elementos representados por símbolos no console. Abaixo está a legenda completa:
+
+Símbolo	Elemento	Descrição
+&	Jogador	O personagem controlado por você.
+P	NPC	Personagem não jogável. Só está no cenário (por enquanto não interage).
+*	Parede	Impede a movimentação. O jogador não pode atravessar.
+@	Chave	Deve ser coletado. Abre a porta (D).
+D	Porta fechada	Bloqueia a passagem. Só abre após coletar a chave.
+=	Porta aberta	Aparece depois que o jogador pega a chave. Ao passar por ela, a fase termina.
+O	Botão	Pode ser ativado ao interagir em cima dele. Pode liberar passagem, acionar armadilhas ou ter outros efeitos dependendo da fase.
+#	Espinho	Armadilha. Se o jogador encostar, a fase reinicia. Após 3 reinícios, volta ao menu principal.
+>	Teletransporte	Sempre vem em pares. Transporta o jogador para outro ponto do mapa.
+X	Monstro nível 1	Anda aleatoriamente em uma das 4 direções. Se tocar no jogador, a fase reinicia.
+V	Monstro nível 2	“Persegue” o jogador com uma lógica simples de inteligência. Se encostar no jogador, reinicia a fase.
+
+
+⸻
+
+🧠 Como funciona o jogo
+
+Início
+
+O jogo começa com um menu principal com as opções:
+	•	Iniciar jogo
+	•	Créditos
+	•	Sair
+
+Ao escolher iniciar, o jogador entra na fase 1.
+
+Avançando nas fases
+	•	Para concluir cada fase, é preciso:
+	1.	Encontrar a chave (@)
+	2.	Isso transforma a porta (D) em uma porta aberta (=)
+	3.	Passar por essa porta termina a fase
+	•	Após a terceira fase, o jogo exibe uma mensagem de parabéns e volta ao menu
+
+Sistema de falhas
+	•	Se o jogador tocar em um espinho (#) ou for pego por um monstro, a fase é reiniciada do zero
+	•	Se isso acontecer 3 vezes, o jogo te devolve automaticamente ao menu principal
+
+Elementos interativos
+	•	Botões (O) são interativos e podem causar efeitos únicos (por exemplo: liberar passagens, ativar armadilhas, mudar o mapa)
+	•	Teleportes (>) levam o jogador de um ponto a outro instantaneamente
+	•	Monstros nível 2 (V) tentam seguir o jogador — usamos uma lógica simples de perseguição, comparando a posição do monstro com a do jogador a cada rodada
+
+💡 O que aprendemos
+
+Esse projeto foi uma grande oportunidade de aplicar, na prática, vários conceitos que vimos em aula. Aprendemos:
+	•	Manipular matrizes bidimensionais para construir os mapas
+	•	Criar funções para organizar melhor o código
+	•	Fazer o jogador se mover com teclas sem pressionar Enter (getch() usando conio.h)
+	•	Implementar interações simples com o ambiente
+	•	Criar sistemas de fases, com lógica de progresso
+	•	Trabalhar com loops, condicionais, e funções auxiliares
+	•	Criar um monstro com movimento inteligente simples
+	•	Simular menus, sistema de falha, e transições entre mapas
+	•	Trabalhar em equipe, dividir as tarefas, e revisar o código juntos
+
+Mesmo com pouco tempo de experiência, conseguimos fazer um jogo funcional e divertido. Tivemos bastante dificuldade em alguns momentos, mas isso só nos motivou mais a continuar aprendendo.
+
+👾 Créditos
+
+Jogo desenvolvido por:
+	•	Artur Lobato
+	•	Matheus Lima
+
+
+
+
+
+
+
+
 A ideia do jogo é simples, porém extremamente trabalhosa: em cada fase, o jogador precisa encontrar uma chave, interagir com ela para abrir uma porta, e então atravessar essa porta para ir para a próxima fase. No entanto, o caminho até a chave nem sempre é fácil. Existem obstáculos como paredes, espinhos, monstros e até botões misteriosos. O jogador precisa prestar atenção em tudo e usar os comandos corretos para vencer os desafios.
 
 Os controles são bem intuitivos: usamos W, A, S, D para mover o personagem (cima, esquerda, baixo e direita, respectivamente) e interagir com o que estiver embaixo do jogador. Essa interação é usada para coletar a chave, apertar botões ou ativar certos elementos do mapa.
