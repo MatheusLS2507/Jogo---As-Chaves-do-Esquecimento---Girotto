@@ -8,13 +8,13 @@ int main() {
     int opcao;
     int px, py; // Posição do jogador
     int chave_pegou, botao1_ativado, botao2_ativado, botao3_ativado, botao4_ativado;
-    int npc_visivel = 1; // Controla se o NPC especial está visível
+    int npc_visivel = 1;
      int npc2_visivel = 1;
     int espinho_px = 4, espinho_py = 5; // Posição do espinho criado pelo botão 1
-    int npc2_x = 6, npc2_y = 6; // Posição do NPC na última fase
+    int npc2_x = 6, npc2_y = 6;
     int chave_ultima_fase_visivel = 0; // Controle da chave na última fase
     char tecla;
-    int fase = 1; // 1 = Vila, 2 = Fase1, 3 = Fase2, 4 = Fase3 (última fase)
+    int fase = 1; // 1 = Vila, 2 = Fase1, 3 = Fase2, 4 = Fase3
     int mx, my; // Posição do monstro X (fase 1 e 2)
     int vx, vy; // Posição do monstro V (apenas fase 2)
     int i, j;
@@ -24,7 +24,7 @@ int main() {
     int monstrox1_x = 5, monstrox1_y = 29; // Primeiro monstro X na fase 4
     int monstrox2_x = 10, monstrox2_y = 10; // Segundo monstro X na fase 4
     int monstrox3_x = 12, monstrox3_y = 22; // Terceiro monstro X na fase 4
-    int parede_removida = 0; // Controla se a parede foi removida na última fase
+    int parede_removida = 0;
     
     // Mapas
     char vila[10][10] = {
@@ -541,7 +541,7 @@ int main() {
                         printf("\nBotao ativado! Um espinho apareceu atras de voce!\n");
                         getch();
                     }
-                    // Segundo botão na Fase2 (abre porta da esquerda e remove espinhos que cercam a chave)
+                    // Segundo botão na Fase2 (abre porta da esquerda que abre a porta e libera a chave
                     else if(fase == 3 && px == 1 && py == 4 && !botao2_ativado) {
                         botao2_ativado = 1;
                         printf("\nBotao ativado! A chave apareceu!\n");
@@ -554,7 +554,7 @@ int main() {
                         npc_visivel = 1;
                     }
                     
-                    // botão na Fase3 (Última fase - surge chave)
+                    // botão na Fase3 brota a chave 
                     else if(fase == 4 && px == 25 && py == 2 && !botao4_ativado) {
                         botao4_ativado = 1;
                         chave_ultima_fase_visivel = 1;
@@ -608,7 +608,7 @@ int main() {
                     else if(tecla == 'a' || tecla == 'A') novo_py--;
                     else if(tecla == 'd' || tecla == 'D') novo_py++;
                     
-                    // Verifica colisões
+                    // Colisões
                     if((fase == 1 && novo_px >= 0 && novo_px < 10 && novo_py >= 0 && novo_py < 10) ||
                        (fase == 2 && novo_px >= 0 && novo_px < 10 && novo_py >= 0 && novo_py < 10) ||
                        (fase == 3 && novo_px >= 0 && novo_px < 20 && novo_py >= 0 && novo_py < 20) ||
@@ -620,9 +620,9 @@ int main() {
                         else if(fase == 3) celula = fase2[novo_px][novo_py];
                         else if(fase == 4) celula = fase3[novo_px][novo_py];
                         
-                        // Verificações especiais para a última fase
+                        
                         if(fase == 4) {
-                            // Verifica se o jogador vai para uma posição onde está um monstro
+                            // Jogador vai para onde ta o monstro ou não
                             if((novo_px == monstrov_x && novo_py == monstrov_y) || 
                                (novo_px == monstrox1_x && novo_py == monstrox1_y) || 
                                (novo_px == monstrox2_x && novo_py == monstrox2_y) || 
@@ -647,7 +647,7 @@ int main() {
                             }
                         }
                         
-                        // Verifica espinho criado pelo botão 1 na fase 3
+                        // Espinhos fase 3
                         if(fase == 3 && botao1_ativado && novo_px == espinho_px && novo_py == espinho_py) {
                             printf("\nVoce pisou em um espinho! Fase reiniciada.\n");
                             
@@ -663,7 +663,7 @@ int main() {
                             continue;
                         }
                         
-                        // Verifica portas
+                        //Portas
                         if((fase == 1 && novo_px == 9 && novo_py == 7 && chave_pegou) ||
                            (fase == 2 && novo_px == 9 && novo_py == 7 && chave_pegou) ||
                            (fase == 3 && novo_px == 19 && novo_py == 17 && chave_pegou) ||
@@ -674,7 +674,7 @@ int main() {
                         }
                         
                         else if(celula != '*') {
-                            // Verifica espinhos fixos
+                            // Espinhos fixos
                             if(celula == '#') {
                                 printf("\nVoce pisou em um espinho! Fase reiniciada.\n");
                                 
@@ -715,7 +715,7 @@ int main() {
                                 }
                                 getch();
                             } 
-                            // Verifica porta trancada
+                            //Porta trancada ou não
                             else if((celula == 'D' || 
                                     (fase == 1 && novo_px == 9 && novo_py == 7) ||
                                     (fase == 2 && novo_px == 9 && novo_py == 7) ||
