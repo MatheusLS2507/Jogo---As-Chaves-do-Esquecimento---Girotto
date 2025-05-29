@@ -4,27 +4,27 @@
 #include <time.h>
 
 int main() {
-    // Variáveis do jogo
+    // VariÃ¡veis do jogo
     int opcao;
-    int px, py; // Posição do jogador
+    int px, py; // PosiÃ§Ã£o do jogador
     int chave_pegou, botao1_ativado, botao2_ativado, botao3_ativado, botao4_ativado;
-    int npc_visivel = 1; // Controla se o NPC especial está visível
+    int npc_visivel = 1; // Controla se o NPC especial estÃ¡ visÃ­vel
      int npc2_visivel = 1;
-    int espinho_px = 4, espinho_py = 5; // Posição do espinho criado pelo botão 1
-    int npc2_x = 6, npc2_y = 6; // Posição do NPC na última fase
-    int chave_ultima_fase_visivel = 0; // Controle da chave na última fase
+    int espinho_px = 4, espinho_py = 5; // PosiÃ§Ã£o do espinho criado pelo botÃ£o 1
+    int npc2_x = 6, npc2_y = 6; // PosiÃ§Ã£o do NPC na Ãºltima fase
+    int chave_ultima_fase_visivel = 0; // Controle da chave na Ãºltima fase
     char tecla;
-    int fase = 1; // 1 = Vila, 2 = Fase1, 3 = Fase2, 4 = Fase3 (última fase)
-    int mx, my; // Posição do monstro X (fase 1 e 2)
-    int vx, vy; // Posição do monstro V (apenas fase 2)
+    int fase = 1; // 1 = Vila, 2 = Fase1, 3 = Fase2, 4 = Fase3 (Ãºltima fase)
+    int mx, my; // PosiÃ§Ã£o do monstro X (fase 1 e 2)
+    int vx, vy; // PosiÃ§Ã£o do monstro V (apenas fase 2)
     int i, j;
    
-    // Adicionando variáveis para os monstros da última fase
+    // Adicionando variÃ¡veis para os monstros da Ãºltima fase
     int monstrov_x = 1, monstrov_y = 1; // Monstro V na fase 4
     int monstrox1_x = 5, monstrox1_y = 29; // Primeiro monstro X na fase 4
     int monstrox2_x = 10, monstrox2_y = 10; // Segundo monstro X na fase 4
     int monstrox3_x = 12, monstrox3_y = 22; // Terceiro monstro X na fase 4
-    int parede_removida = 0; // Controla se a parede foi removida na última fase
+    int parede_removida = 0; // Controla se a parede foi removida na Ãºltima fase
     
     // Mapas
     char vila[10][10] = {
@@ -119,7 +119,7 @@ int main() {
         {'*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*'}
     };
 
-    // Inicializa gerador de números aleatórios
+    // Inicializa gerador de nÃºmeros aleatÃ³rios
     srand(time(NULL));
     
     // Menu principal
@@ -214,7 +214,7 @@ int main() {
                     }
                 }
                 else if(fase == 4) {
-                    // Desenha a última fase
+                    // Desenha a Ãºltima fase
                     for(i = 0; i < 40; i++) {
                         for(j = 0; j < 40; j++) {
                             if(i == px && j == py) printf("& ");
@@ -241,7 +241,7 @@ int main() {
                 printf("\nChave: %s\n", chave_pegou ? "SIM" : "NAO");
                 printf("Use WASD para mover, I para interagir\n");
                 
-                // Verificação de colisão com monstros - CORRIGIDO
+                // VerificaÃ§Ã£o de colisÃ£o com monstros 
                 if((fase == 2 && px == mx && py == my) || 
                    (fase == 3 && ((px == mx && py == my) || (px == vx && py == vy))) ||
                    (fase == 4 && ((px == monstrov_x && py == monstrov_y) || 
@@ -273,7 +273,7 @@ int main() {
                         botao3_ativado = 0;
                         botao4_ativado = 0;
                         chave_ultima_fase_visivel = 0;
-                        // Reinicia posições dos monstros
+                        // Reinicia posiÃ§Ãµes dos monstros
                         monstrov_x = 1; monstrov_y = 1;
                         monstrox1_x = 5; monstrox1_y = 29;
                         monstrox2_x = 10; monstrox2_y = 10;
@@ -282,7 +282,7 @@ int main() {
                     continue;
                 }
                 
-                // Código para passagem entre fases
+                // CÃ³digo para passagem entre fases
                 if(fase == 1 && px == 9 && py == 7 && chave_pegou) {
                     printf("\nPassando para a proxima fase...\n");
                     getch();
@@ -316,16 +316,16 @@ int main() {
                     printf("\nPassando para a fase 3 (ultima fase)...\n");
                     getch();
                     
-                    // Inicializa a última fase (fase3)
+                    // Inicializa a Ãºltima fase (fase3)
                     fase = 4;
-                    px = 2; py = 17; // Posição inicial do jogador
+                    px = 2; py = 17; // PosiÃ§Ã£o inicial do jogador
                     chave_pegou = 0;
                     botao3_ativado = 0;
                     botao4_ativado = 0;
                     
                     chave_ultima_fase_visivel = 0;
                     
-                    // Inicializa posições dos monstros da fase 4
+                    // Inicializa posiÃ§Ãµes dos monstros da fase 4
                     monstrov_x = 1; monstrov_y = 1;
                     monstrox1_x = 5; monstrox1_y = 29;
                     monstrox2_x = 10; monstrox2_y = 10;
@@ -341,7 +341,7 @@ int main() {
                 
                 // Movimento dos monstros
                 if(fase >= 2 && fase <= 3) {
-                    // Monstro X (movimento aleatório)
+                    // Monstro X (movimento aleatÃ³rio)
                     int dir = rand() % 4;
                     int novo_mx = mx, novo_my = my;
                     
@@ -394,7 +394,7 @@ int main() {
                 if(fase == 4) {
                     
                     // Movimento do monstro V (persegue jogador)
-                    if(rand() % 3 == 0) { // Move apenas em 1/3 das vezes para não ser muito agressivo
+                    if(rand() % 3 == 0) { // Move apenas em 1/3 das vezes para nÃ£o ser muito agressivo
                         int novo_v_x = monstrov_x, novo_v_y = monstrov_y;
                         
                         if(px < monstrov_x && fase3[monstrov_x-1][monstrov_y] != '*') novo_v_x--;
@@ -411,7 +411,7 @@ int main() {
                         }
                     }
                     
-                    // Movimento dos monstros X (movimento aleatório)
+                    // Movimento dos monstros X (movimento aleatÃ³rio)
                     // Primeiro monstro X
                     if(rand() % 2 == 0) {
                         int dir = rand() % 4;
@@ -469,15 +469,15 @@ int main() {
                         }
                     }
                     
-                    // Movimento do NPC na última fase
+                    // Movimento do NPC na Ãºltima fase
                     if(parede_removida && npc2_visivel) {
-                        // Se a porta está aberta, o NPC se move para a direita (até a coluna 20)
+                        // Se a porta estÃ¡ aberta, o NPC se move para a direita (atÃ© a coluna 20)
                         if(chave_pegou && npc2_y < 20) {
                             npc2_y++;
                         }
-                        // Se a porta está fechada, o NPC não se move
+                        // Se a porta estÃ¡ fechada, o NPC nÃ£o se move
                         else if(!chave_pegou) {
-                            // Não faz nada - NPC fica parado
+                            // NÃ£o faz nada - NPC fica parado
                         }
                         
                         // Se o NPC chegou na coluna 20, ele desaparece
@@ -489,7 +489,7 @@ int main() {
                 
                 tecla = getch();
                 
-                // Interação com I
+                // InteraÃ§Ã£o com I
                 if(tecla == 'i' || tecla == 'I') {
                     // NPC normal
                     if((fase == 1 && px == 1 && py == 3) || 
@@ -504,23 +504,23 @@ int main() {
                     }
                   
                    
-                    // Botão na Vila (gera chave)
+                    // BotÃ£o na Vila (gera chave)
                     else if(fase == 1 && px == 1 && py == 8 && !botao1_ativado) {
                         botao1_ativado = 1;
                         printf("\nBotao ativado! A chave apareceu!\n");
                         getch();
                     }
-                    // Botão na Fase1 (gera teleportes)
+                    // BotÃ£o na Fase1 (gera teleportes)
                     else if(fase == 2 && px == 1 && py == 3 && !botao1_ativado) {
                         botao1_ativado = 1;
                         printf("\nBotao ativado! Teleportes apareceram!\n");
                         getch();
                     }
-                    // Primeiro botão na Fase2 (gera espinho atrás do jogador)
+                    // Primeiro botÃ£o na Fase2 (gera espinho atrÃ¡s do jogador)
                     else if(fase == 3 && px == 1 && py == 1 && !botao1_ativado) {
                         botao1_ativado = 1;
                         
-                        // Determina a posição do espinho atrás do jogador
+                        // Determina a posiÃ§Ã£o do espinho atrÃ¡s do jogador
                         if(py > 0 && fase2[px][py-1] != '*') {
                             espinho_px = px;
                             espinho_py = py-1;
@@ -541,20 +541,20 @@ int main() {
                         printf("\nBotao ativado! Um espinho apareceu atras de voce!\n");
                         getch();
                     }
-                    // Segundo botão na Fase2 (abre porta da esquerda e remove espinhos que cercam a chave)
+                    // Segundo botÃ£o na Fase2 (abre porta da esquerda e remove espinhos que cercam a chave)
                     else if(fase == 3 && px == 1 && py == 4 && !botao2_ativado) {
                         botao2_ativado = 1;
                         printf("\nBotao ativado! A chave apareceu!\n");
                         
-                        // Mostra diálogo do NPC especial
+                        // Mostra diÃ¡logo do NPC especial
                         system("cls");
-                        printf("NPC: Vou parar por aqui, é muito perigoso!\n");
+                        printf("NPC: Vou parar por aqui, Ã© muito perigoso!\n");
                         printf("Pressione ENTER para continuar...");
                         while(getch() != 13);
                         npc_visivel = 1;
                     }
                     
-                    // botão na Fase3 (Última fase - surge chave)
+                    // botÃ£o na Fase3 (Ãšltima fase - surge chave)
                     else if(fase == 4 && px == 25 && py == 2 && !botao4_ativado) {
                         botao4_ativado = 1;
                         chave_ultima_fase_visivel = 1;
@@ -582,7 +582,7 @@ int main() {
                         printf("\nTeleportado!\n");
                         getch();
                     }
-                    // Teleporte na última fase
+                    // Teleporte na Ãºltima fase
                     else if(fase == 4 && ((px == 34 && py == 5) || (px == 34 && py == 14))) {
                         if(px == 34 && py == 5) px = 34, py = 14;
                         else px = 34, py = 5;
@@ -599,7 +599,7 @@ int main() {
                         getch();
                     }
                 }
-                // Movimentação
+                // MovimentaÃ§Ã£o
                 else {
                     int novo_px = px, novo_py = py;
                     
@@ -608,21 +608,21 @@ int main() {
                     else if(tecla == 'a' || tecla == 'A') novo_py--;
                     else if(tecla == 'd' || tecla == 'D') novo_py++;
                     
-                    // Verifica colisões
+                    // Verifica colisÃµes
                     if((fase == 1 && novo_px >= 0 && novo_px < 10 && novo_py >= 0 && novo_py < 10) ||
                        (fase == 2 && novo_px >= 0 && novo_px < 10 && novo_py >= 0 && novo_py < 10) ||
                        (fase == 3 && novo_px >= 0 && novo_px < 20 && novo_py >= 0 && novo_py < 20) ||
                        (fase == 4 && novo_px >= 0 && novo_px < 40 && novo_py >= 0 && novo_py < 40)) {
                         
-                        char celula = '.'; // Valor padrão
+                        char celula = '.'; // Valor padrÃ£o
                         if(fase == 1) celula = vila[novo_px][novo_py];
                         else if(fase == 2) celula = fase1[novo_px][novo_py];
                         else if(fase == 3) celula = fase2[novo_px][novo_py];
                         else if(fase == 4) celula = fase3[novo_px][novo_py];
                         
-                        // Verificações especiais para a última fase
+                        // VerificaÃ§Ãµes especiais para a Ãºltima fase
                         if(fase == 4) {
-                            // Verifica se o jogador vai para uma posição onde está um monstro
+                            // Verifica se o jogador vai para uma posiÃ§Ã£o onde estÃ¡ um monstro
                             if((novo_px == monstrov_x && novo_py == monstrov_y) || 
                                (novo_px == monstrox1_x && novo_py == monstrox1_y) || 
                                (novo_px == monstrox2_x && novo_py == monstrox2_y) || 
@@ -636,7 +636,7 @@ int main() {
                                 
                                 chave_ultima_fase_visivel = 0;
                                 
-                                // Reinicia posições dos monstros
+                                // Reinicia posiÃ§Ãµes dos monstros
                                 monstrov_x = 1; monstrov_y = 1;
                                 monstrox1_x = 5; monstrox1_y = 29;
                                 monstrox2_x = 10; monstrox2_y = 10;
@@ -647,7 +647,7 @@ int main() {
                             }
                         }
                         
-                        // Verifica espinho criado pelo botão 1 na fase 3
+                        // Verifica espinho criado pelo botÃ£o 1 na fase 3
                         if(fase == 3 && botao1_ativado && novo_px == espinho_px && novo_py == espinho_py) {
                             printf("\nVoce pisou em um espinho! Fase reiniciada.\n");
                             
@@ -707,7 +707,7 @@ int main() {
                                     parede_removida = 0;
                                     chave_ultima_fase_visivel = 0;
                                     
-                                    // Reinicia posições dos monstros
+                                    // Reinicia posiÃ§Ãµes dos monstros
                                     monstrov_x = 1; monstrov_y = 1;
                                     monstrox1_x = 5; monstrox1_y = 29;
                                     monstrox2_x = 10; monstrox2_y = 10;
